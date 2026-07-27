@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Clock, Activity, Target, Zap, HeartPulse, Plane } from 'lucide-react';
+import { BookOpen, Clock, Activity, Target } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export default function DecisionPanel({ systemStatus }) {
@@ -29,7 +29,7 @@ export default function DecisionPanel({ systemStatus }) {
     sopContent = (
       <>
         <span style={{color: 'var(--text-secondary)'}}>{t('sop_desc_road_accident_1')}</span> <b style={{color: 'var(--text-primary)'}}>{alternatives.length > 0 ? alternatives.join(', ') : t('nearby_roads')}</b>。<br/>
-        <span style={{color: 'var(--text-secondary)'}}>{t('cms_suggestion')}：</span><span style={{color: 'var(--text-primary)'}}>"{incident.location}{t('road_closed_delay')} {baseClearance + penalty} {t('minutes')}"</span>
+        <span style={{color: 'var(--text-secondary)'}}>{t('cms_suggestion')}：</span><span style={{color: 'var(--text-primary)'}}>"{incident.location}{t('road_closed_delay', { time: baseClearance + penalty })}"</span>
       </>
     );
   } else if (incident.type === 'Crowd_Surge_Injury') {
@@ -82,42 +82,6 @@ export default function DecisionPanel({ systemStatus }) {
         <div style={{ background: 'var(--bg-color)', border: '1px solid var(--panel-border)', padding: '0.75rem 1rem', borderRadius: '4px', fontSize: '0.85rem', borderLeft: '3px solid var(--accent-primary)' }}>
           <strong style={{color: 'var(--text-primary)'}}>{sopTitle}：</strong><br/>
           {sopContent}
-        </div>
-      </div>
-
-      <div>
-        <h4 style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          <Zap size={14} color="#10b981" />
-          Smart Grid & Energy Dispatch
-        </h4>
-        <div style={{ background: 'rgba(16, 185, 129, 0.05)', border: '1px solid rgba(16, 185, 129, 0.3)', padding: '0.75rem 1rem', borderRadius: '4px', fontSize: '0.85rem', borderLeft: '3px solid #10b981' }}>
-          <strong style={{color: '#10b981'}}>Microgrid Protection Protocol Initiated:</strong><br/>
-          <span style={{color: 'var(--text-secondary)'}}>Automatically cutting non-essential power in the incident zone to prevent energy waste.</span><br/>
-          <span style={{color: 'var(--text-primary)'}}>Backup power prioritized and routed to nearby hospitals and shelters.</span>
-        </div>
-      </div>
-
-      <div>
-        <h4 style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          <HeartPulse size={14} color="#ec4899" />
-          Biomedical Data Platform Link
-        </h4>
-        <div style={{ background: 'rgba(236, 72, 153, 0.05)', border: '1px solid rgba(236, 72, 153, 0.3)', padding: '0.75rem 1rem', borderRadius: '4px', fontSize: '0.85rem', borderLeft: '3px solid #ec4899' }}>
-          <strong style={{color: '#ec4899'}}>Dynamic Medical Capacity Balancing:</strong><br/>
-          <span style={{color: 'var(--text-secondary)'}}>Connected to regional biomedical DB to analyze ER capacity. Hospital A ER reaching limit;</span><br/>
-          <span style={{color: 'var(--text-primary)'}}>AI has redirected inbound ambulances to Hospital B and pre-transmitted triage data.</span>
-        </div>
-      </div>
-
-      <div>
-        <h4 style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          <Plane size={14} color="#f59e0b" />
-          Autonomous Drone & Digital Twin
-        </h4>
-        <div style={{ background: 'rgba(245, 158, 11, 0.05)', border: '1px solid rgba(245, 158, 11, 0.3)', padding: '0.75rem 1rem', borderRadius: '4px', fontSize: '0.85rem', borderLeft: '3px solid #f59e0b' }}>
-          <strong style={{color: '#f59e0b'}}>Digital Twin 3D Modeling Initiated:</strong><br/>
-          <span style={{color: 'var(--text-secondary)'}}>Dispatched 3 scout drones to the scene. Integrating with IoT sensors,</span><br/>
-          <span style={{color: 'var(--text-primary)'}}>damage assessments are being mapped onto the Digital Twin model in real-time.</span>
         </div>
       </div>
 

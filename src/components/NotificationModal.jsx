@@ -11,8 +11,8 @@ export default function NotificationModal({ isOpen, onClose, systemStatus }) {
   const penalty = 30; 
   const ete = baseClearance + penalty;
   
-  const location = incident?.location || 'Unknown Location';
-  const alternativeStr = systemStatus?.alternatives?.join(' or ') || 'Alternative Route';
+  const location = incident?.location || '未知路段';
+  const alternativeStr = systemStatus?.alternatives?.join(' 或 ') || '替代道路';
 
   const langs = [
     { id: 'zh', name: '中文' },
@@ -44,7 +44,7 @@ export default function NotificationModal({ isOpen, onClose, systemStatus }) {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--panel-border)' }}>
           <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             <Smartphone size={18} color="var(--text-primary)" />
-            Cell Broadcast / CMS Multilingual Alert
+            細胞廣播 / CMS 電子看板多語通報
           </h3>
           <button onClick={onClose} style={{ background: 'transparent', border: 'none', color: 'var(--text-secondary)', cursor: 'pointer' }}>
             <X size={20} />
@@ -55,11 +55,11 @@ export default function NotificationModal({ isOpen, onClose, systemStatus }) {
         <div style={{ padding: '1.5rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem', color: 'var(--text-secondary)', fontSize: '0.875rem' }}>
             <Globe size={16} />
-            System detected 32% foreign roaming. Auto-dispatching multi-language broadcast:
+            系統偵測該區外籍漫遊比例達 32%，將自動派發多國語言版本：
           </div>
 
           <div style={{ border: '1px solid var(--panel-border)', borderRadius: '8px', overflow: 'hidden' }}>
-            {/* Language Tabs */}
+            {/* 語系切換 Tabs */}
             <div style={{ display: 'flex', background: 'rgba(0,0,0,0.2)', borderBottom: '1px solid var(--panel-border)' }}>
               {langs.map(lang => (
                 <button
@@ -80,7 +80,7 @@ export default function NotificationModal({ isOpen, onClose, systemStatus }) {
               ))}
             </div>
             
-            {/* Message Content */}
+            {/* 訊息內容 */}
             <div style={{ padding: '1.5rem', background: 'var(--bg-color)', minHeight: '120px', display: 'flex', alignItems: 'center' }}>
               <p style={{ fontSize: '0.95rem', lineHeight: 1.6, color: 'var(--text-primary)', margin: 0 }}>
                 {contentMap[activeLang]}
@@ -91,9 +91,9 @@ export default function NotificationModal({ isOpen, onClose, systemStatus }) {
 
         {/* Footer */}
         <div style={{ padding: '1.25rem 1.5rem', background: 'var(--panel-bg)', borderTop: '1px solid var(--panel-border)', display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
-          <button onClick={() => { alert('Multilingual alert dispatched via API!'); onClose(); }} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1.5rem', background: 'var(--text-primary)', border: 'none', borderRadius: '4px', color: 'var(--bg-color)', fontWeight: 600, cursor: 'pointer' }}>
+          <button onClick={() => { alert('已透過 API 派發多通路推播！'); onClose(); }} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1.5rem', background: 'var(--text-primary)', border: 'none', borderRadius: '4px', color: 'var(--bg-color)', fontWeight: 600, cursor: 'pointer' }}>
             <CheckCircle2 size={16} />
-            Broadcast to All Languages
+            一鍵發布 (全語言派送)
           </button>
         </div>
       </div>

@@ -14,15 +14,6 @@
   --alert-red: #ef4444;
   --warn-yellow: #f59e0b;
   
-  --chat-bubble-model: rgba(255, 255, 255, 0.08);
-  --chat-icon-bg: rgba(255, 255, 255, 0.15);
-  --chat-icon-color: #ffffff;
-  --chat-header-text-end: #ffffff;
-  --chat-input-bg: rgba(0, 0, 0, 0.3);
-  
-  --stat-glow: 0 0 10px rgba(56, 189, 248, 0.5), 0 0 20px rgba(56, 189, 248, 0.3);
-  --stat-glow-pulse: 0 0 15px rgba(56, 189, 248, 0.8), 0 0 30px rgba(56, 189, 248, 0.6);
-  
   font-family: 'Inter', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   color-scheme: dark;
 }
@@ -253,21 +244,11 @@ button:active {
 [data-theme='light'] {
   --bg-color: #f8fafc;
   --panel-bg: rgba(255, 255, 255, 0.75);
-  --panel-border: rgba(0, 0, 0, 0.12);
+  --panel-border: rgba(0, 0, 0, 0.08);
   --text-primary: #0f172a;
   --text-secondary: #475569;
   
   --accent-primary: #0284c7;
-  
-  --chat-bubble-model: #f1f5f9;
-  --chat-icon-bg: #e2e8f0;
-  --chat-icon-color: #334155;
-  --chat-header-text-end: #0f172a;
-  --chat-input-bg: #ffffff;
-  
-  --stat-glow: none;
-  --stat-glow-pulse: none;
-  
   color-scheme: light;
 }
 

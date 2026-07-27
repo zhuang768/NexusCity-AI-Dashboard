@@ -14,7 +14,7 @@ const TrafficChart = lazy(() => import('./components/TrafficChart'));
 const ChatAssistant = lazy(() => import('./components/ChatAssistant'));
 const DecisionPanel = lazy(() => import('./components/DecisionPanel'));
 const NetworkMap = lazy(() => import('./components/NetworkMap'));
-import { Users, Car, AlertTriangle, ShieldCheck, MessageCircle, X, Leaf, Zap } from 'lucide-react';
+import { Users, Car, AlertTriangle, ShieldCheck, MessageCircle, X } from 'lucide-react';
 import './App.css';
 import { useLanguage } from './contexts/LanguageContext';
 import { useTheme } from './contexts/ThemeContext';
@@ -35,20 +35,6 @@ function App() {
   const cityData = useCityData();
   const animatedTraffic = useCountUp(cityData.totalTraffic || 0, 1200);
   const animatedCrowd = useCountUp(cityData.domeCrowd || 0, 1200);
-
-  // 永續減碳指標 (CO2 Saved)
-  const [co2Saved, setCo2Saved] = useState(0);
-  useEffect(() => {
-    if (!isNormal) {
-      // 模擬 AI 介入疏導後，隨著時間持續省下的 CO2 排放量 (噸)
-      const interval = setInterval(() => {
-        setCo2Saved(prev => parseFloat((prev + 0.05).toFixed(2)));
-      }, 1500);
-      return () => clearInterval(interval);
-    } else {
-      setCo2Saved(0);
-    }
-  }, [isNormal]);
 
   // 主動預警機制：進入系統後 3 秒，自動彈出 AI 聊天室
   useEffect(() => {
@@ -113,16 +99,11 @@ function App() {
               </div>
             </div>
 
-            <div className="col-span-3 glass-panel stat-card animate-fade-in" style={{ animationDelay: '0.3s', borderColor: isNormal ? '' : '#10b981' }}>
-              <div className="stat-icon" style={{ color: isNormal ? 'var(--text-secondary)' : '#10b981' }}>
-                {isNormal ? <Leaf size={24} /> : <Zap size={24} className="animate-pulse" />}
-              </div>
+            <div className="col-span-3 glass-panel stat-card animate-fade-in" style={{ animationDelay: '0.3s' }}>
+              <div className="stat-icon"><ShieldCheck size={24} /></div>
               <div className="stat-info">
-                <h3>{isNormal ? 'Env & Carbon Monitor' : 'Smart Grid Active'}</h3>
-                <div className="value" style={{ color: isNormal ? 'var(--text-primary)' : '#10b981', display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-                  {isNormal ? 'Monitoring' : `+${co2Saved.toFixed(2)}`}
-                  {!isNormal && <span style={{fontSize:'0.9rem', color:'var(--text-secondary)'}}>tons (CO2 Saved)</span>}
-                </div>
+                <h3>{t('stat_ai_level_title')}</h3>
+                <div className="value">{t('stat_sop_monitoring')}</div>
               </div>
             </div>
 
@@ -179,7 +160,7 @@ function App() {
                 <h2 className="panel-title">{t('panel_network_map')}</h2>
               </div>
               <div className="panel-content" style={{ height: '500px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                <Suspense fallback={<div className="text-white opacity-50">Loading map module...</div>}>
+                <Suspense fallback={<div className="text-white opacity-50">載入地圖模組中...</div>}>
                   <NetworkMap systemStatus={systemStatus} onRoadClick={triggerInteractiveIncident} />
                 </Suspense>
               </div>
@@ -216,8 +197,8 @@ function App() {
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '1.5rem', border: '1px solid var(--panel-border)', borderRadius: '4px', background: 'var(--bg-color)' }}>
                 <div>
-                  <div style={{ fontWeight: 500, marginBottom: '0.25rem', color: 'var(--text-primary)' }}>Theme Mode</div>
-                  <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Switch between light and dark mode to adapt to the environment</div>
+                  <div style={{ fontWeight: 500, marginBottom: '0.25rem', color: 'var(--text-primary)' }}>介面主題模式 (Theme Mode)</div>
+                  <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>切換白天與黑夜模式以適應當前環境</div>
                 </div>
                 <div>
                   <button 
@@ -232,7 +213,7 @@ function App() {
                       fontWeight: 600
                     }}
                   >
-                    {theme === 'dark' ? 'Switch to Light Mode ☀️' : 'Switch to Dark Mode 🌙'}
+                    {theme === 'dark' ? '切換為白天模式 ☀️' : '切換為黑夜模式 🌙'}
                   </button>
                 </div>
               </div>
@@ -261,7 +242,7 @@ function App() {
       <div className="dashboard-grid">
         <Suspense fallback={
           <div className="col-span-12" style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-secondary)' }}>
-            <div style={{ marginBottom: '1rem', opacity: 0.5 }}>Loading Module...</div>
+            <div style={{ marginBottom: '1rem', opacity: 0.5 }}>模組載入中 (Loading Module...)</div>
           </div>
         }>
           {renderContent()}
@@ -284,7 +265,7 @@ function App() {
       {isChatOpen && (
         <div className="chat-widget">
           <div className="panel-header">
-            <h2 className="panel-title" style={{ fontSize: '1rem', background: 'linear-gradient(135deg, #38bdf8, var(--chat-header-text-end))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+            <h2 className="panel-title" style={{ fontSize: '1rem', background: 'linear-gradient(135deg, #38bdf8, #fff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
               <MessageCircle size={18} color="#38bdf8" /> {t('chat_title')}
             </h2>
             <button onClick={() => setIsChatOpen(false)} style={{ background: 'transparent', border: 'none', color: 'var(--text-secondary)', cursor: 'pointer' }}>
@@ -292,7 +273,7 @@ function App() {
             </button>
           </div>
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-            <Suspense fallback={<div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)' }}>Loading...</div>}>
+            <Suspense fallback={<div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)' }}>載入中...</div>}>
               <ChatAssistant systemStatus={systemStatus} />
             </Suspense>
           </div>

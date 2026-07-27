@@ -58,7 +58,7 @@ export default function IncidentManager({ systemStatus, setSystemStatus, onShowN
             fontWeight: 500, fontSize: '0.875rem'
           }}
         >
-          <Zap size={16} color="var(--warn-yellow)" /> Incident Simulation <ChevronDown size={16} />
+          <Zap size={16} color="var(--warn-yellow)" /> 事件注入演練 <ChevronDown size={16} />
         </button>
       ) : (
         <div style={{ display: 'flex', gap: '0.5rem' }}>
@@ -72,7 +72,7 @@ export default function IncidentManager({ systemStatus, setSystemStatus, onShowN
               fontWeight: 500, fontSize: '0.875rem'
             }}
           >
-            Recover
+            恢復正常
           </button>
           <button 
             onClick={onShowNotification}
@@ -84,7 +84,7 @@ export default function IncidentManager({ systemStatus, setSystemStatus, onShowN
               fontWeight: 600, fontSize: '0.875rem'
             }}
           >
-            <Send size={16} /> Send Alert
+            <Send size={16} /> 發送通報
           </button>
         </div>
       )}
@@ -107,16 +107,16 @@ export default function IncidentManager({ systemStatus, setSystemStatus, onShowN
           boxShadow: '0 10px 40px rgba(0,0,0,0.5)',
           zIndex: 100
         }}>
-          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', padding: '0.25rem 0.5rem', marginBottom: '0.25rem' }}>Select Scenario:</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', padding: '0.25rem 0.5rem', marginBottom: '0.25rem' }}>選擇情境：</div>
           
           <button onClick={() => injectEvent(0)} style={dropdownButtonStyle('rgba(239, 68, 68, 0.1)', 'var(--alert-red)')}>
-            <Zap size={14} /> Scenario 1: Guangfu S. Rd Accident (Critical)
+            <Zap size={14} /> 情境一：光復南路車禍 (Critical)
           </button>
           <button onClick={() => injectEvent(1)} style={dropdownButtonStyle('rgba(245, 158, 11, 0.1)', '#f59e0b')}>
-            <Zap size={14} /> Scenario 2: Dome Crowd Surge (High)
+            <Zap size={14} /> 情境二：大巨蛋推擠 (High)
           </button>
           <button onClick={() => injectEvent(2)} style={dropdownButtonStyle('rgba(56, 189, 248, 0.1)', '#38bdf8')}>
-            <Zap size={14} /> Scenario 3: Xinyi Signal Error (Medium)
+            <Zap size={14} /> 情境三：信義區號誌異常 (Medium)
           </button>
         </div>
       )}

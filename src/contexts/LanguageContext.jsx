@@ -4,7 +4,7 @@ import translations from '../i18n/translations.json';
 const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState('en'); // 預設英文
+  const [language, setLanguage] = useState('zh'); // 預設中文
 
   // 翻譯函式：根據目前的語系與 key 取得字串，若找不到則退回中文或原 key
   const t = (key) => {

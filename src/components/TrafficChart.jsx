@@ -26,7 +26,7 @@ const CustomTooltip = ({ active, payload, label }) => {
         color: '#fff'
       }}>
         <div style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '6px', marginBottom: '8px', fontWeight: '600', color: '#a1a1aa' }}>
-          Time: {label}
+          時間: {label}
         </div>
         {payload.map((entry, index) => (
           <div key={index} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', marginBottom: '4px' }}>
@@ -95,14 +95,14 @@ export default function TrafficChart() {
           style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', opacity: hiddenSeries.traffic ? 0.4 : 1, transition: 'all 0.3s', padding: '4px 8px', borderRadius: '4px', background: 'rgba(255,255,255,0.02)' }}
         >
           <div style={{ width: '12px', height: '12px', borderRadius: '3px', backgroundColor: '#3b82f6', boxShadow: '0 0 6px #3b82f6' }}></div>
-          <span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Traffic Volume (Click to toggle)</span>
+          <span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>車流量 (點擊切換)</span>
         </div>
         <div 
           onClick={() => toggleSeries('crowd')}
           style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', opacity: hiddenSeries.crowd ? 0.4 : 1, transition: 'all 0.3s', padding: '4px 8px', borderRadius: '4px', background: 'rgba(255,255,255,0.02)' }}
         >
           <div style={{ width: '12px', height: '12px', borderRadius: '3px', backgroundColor: '#d97706', boxShadow: '0 0 6px #d97706' }}></div>
-          <span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Crowd Density (Click to toggle)</span>
+          <span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>人潮數量 (點擊切換)</span>
         </div>
       </div>
     );
@@ -137,7 +137,7 @@ export default function TrafficChart() {
               yAxisId="left" 
               type="monotone" 
               dataKey="traffic" 
-              name="Traffic Volume (Vehicles)" 
+              name="車流量 (輛)" 
               stroke="#3b82f6" 
               strokeWidth={3} 
               fillOpacity={1} 
@@ -152,7 +152,7 @@ export default function TrafficChart() {
               yAxisId="right" 
               type="monotone" 
               dataKey="crowd" 
-              name="Crowd Density (People)" 
+              name="人潮數量 (人)" 
               stroke="#d97706" 
               strokeWidth={3} 
               fillOpacity={1} 
